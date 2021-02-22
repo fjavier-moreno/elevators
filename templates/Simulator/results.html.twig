@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% for key, report in reports %}
+        <table border="1px solid" style="width: 100%; padding: 5px;">
+            <tr>
+                <td colspan="{{ colspan }}" bgcolor="#EF6C00" style="text-align: center">
+                    {{ key|date('H:i:s') }}
+                </td>
+            </tr>
+        <tr>
+            {% for elevator in report %}
+                <td>{{ elevator.elevator_id }}<br>Current floor: {{ elevator.current_floor }}<br>Total traveled: {{ elevator.total_traveled }}</td>
+            {% endfor %}
+        </tr>
+        </table>
+    {% endfor %}
+{% endblock %}

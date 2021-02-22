@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+   {% set css_width= '50px;' %}
+
+   {% set schedules = [
+       {'hourStart' : 9, 'minuteStart': 00, 'hourEnd' : 11, 'minuteEnd' : 00, 'frequency' : 5, 'startFloors' : '0', 'endFloors' : '2'},
+       {'hourStart' : 9, 'minuteStart': 00, 'hourEnd' : 11, 'minuteEnd' : 00, 'frequency' : 5, 'startFloors' : '0', 'endFloors' : '3'},
+       {'hourStart' : 9, 'minuteStart': 00, 'hourEnd' : 10, 'minuteEnd' : 00, 'frequency' : 10, 'startFloors' : '0', 'endFloors' : '1'},
+       {'hourStart' : 11, 'minuteStart': 00, 'hourEnd' : 18, 'minuteEnd' : 20, 'frequency' : 20, 'startFloors' : '0', 'endFloors' : '1,2,3'},
+       {'hourStart' : 14, 'minuteStart': 00, 'hourEnd' : 15, 'minuteEnd' : 00, 'frequency' : 4, 'startFloors' : '1,2,3', 'endFloors' : '0'},
+       {'hourStart' : 15, 'minuteStart': 00, 'hourEnd' : 16, 'minuteEnd' : 00, 'frequency' : 7, 'startFloors' : '2,3', 'endFloors' : '0'},
+       {'hourStart' : 15, 'minuteStart': 00, 'hourEnd' : 16, 'minuteEnd' : 00, 'frequency' : 7, 'startFloors' : '0', 'endFloors' : '1,3'},
+       {'hourStart' : 18, 'minuteStart': 00, 'hourEnd' : 20, 'minuteEnd' : 00, 'frequency' : 3, 'startFloors' : '1,2,3', 'endFloors' : '0'},
+   ] %}
+
+    <h1>Aigües de Barcelona elevator simulator</h1>
+    <form method="POST">
+        <label for="elevatorsAmount">Number of elevators:</label>
+        <input type="number" value="3" id="elevatorsAmount" name="elevatorsAmount" min="1">
+        <br><br>
+        <label for="periodFromHour">Period:</label>
+        <input type="number" value="9" id="periodFromHour" name="periodFromHour" max="23" min="0">:<input type="number" value="0" id="periodFromMinutes" name="periodFromMinutes" max="59" min="00">
+        <label for="periodToHour">To:</label>
+        <input type="number" value="20" id="periodToHour" name="periodToHour" max="23" min="0">:<input type="number" value="0" id="periodToMinutes" name="periodToMinutes" max="59" min="00">
+        <br><br>
+        <table>
+            {% for schedule in schedules %}
+                <tr>
+                    <td>
+                        <label for="schedules[{{ loop.index }}][hourStart]]">Hour start:</label>
+                        <input type="number" value="{{ schedule.hourStart }}" id="schedules[{{ loop.index }}][hourStart]" name="schedules[{{ loop.index }}][hourStart]" max="23" min="0">:<input type="number" value="{{ schedule.minuteStart }}" id="schedules[{{ loop.index }}][minuteStart]" name="schedules[{{ loop.index }}][minuteStart]" max="59" min="0">
+                    </td>
+                    <td>
+                        <label for="schedules[{{ loop.index }}][hourEnd]">Hour end:</label>
+                        <input type="number" value="{{ schedule.hourEnd }}" id="hourEnd0" name="schedules[{{ loop.index }}][hourEnd]" max="23" min="0">:<input type="number" value="{{ schedule.minuteEnd }}" id="schedules[{{ loop.index }}][minuteEnd]" name="schedules[{{ loop.index }}][minuteEnd]" max="59" min="0">
+                    </td>
+                    <td>
+                        <label for="schedules[{{ loop.index }}][frequency]">Frequency:</label>
+                        <input type="number" value="{{ schedule.frequency }}" id="schedules[{{ loop.index }}][frequency]" name="schedules[{{ loop.index }}][frequency]" max="99" min="0">
+                    </td>
+                    <td>
+                        <label for="schedules[{{ loop.index }}][startFloors]">Start floors (comma separated):</label>
+                        <input type="text" value="{{ schedule.startFloors }}" id="schedules[{{ loop.index }}][startFloors]" name="schedules[{{ loop.index }}][startFloors]">
+                    </td>
+                    <td>
+                        <label for="schedules[{{ loop.index }}][endFloors]">End floors (comma separated):</label>
+                        <input type="text" value="{{ schedule.endFloors }}" id="schedules[{{ loop.index }}][endFloors]" name="schedules[{{ loop.index }}][endFloors]">
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Simulate">
+    </form>
+{% endblock %}

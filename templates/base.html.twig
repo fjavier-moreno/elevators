@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Simulator{% endblock %}</title>
+        {% block stylesheets %}
+
+            <style>
+                body {
+                    background-color: lightgrey;
+                    text-align: center;
+                }
+                h1 {
+                    padding: 0 0 50px;
+                }
+                input{
+                    width: 35px;
+                }
+                table {
+                    margin: auto;
+                }
+                input[type=submit] {
+                    margin: 30px;
+                    width: auto;
+                }
+            </style>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
