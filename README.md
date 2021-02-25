@@ -77,7 +77,6 @@ ascensores:
 Dependencies:
 
   * [Docker](https://www.docker.com)
-  * [Composer](https://getcomposer.org/)
 
 Simply `cd` to elevators project and run `make start`. This will initialise and start all the containers, then leave them running in the background.
 Also will install dependencies trough Composer and give permissions to cache & logs directories (sudo will be needed).
